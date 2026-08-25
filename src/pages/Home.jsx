@@ -1,15 +1,9 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
-import Hero3D from "../components/Hero3D";
-
 export default function Home() {
   return (
     <div className="flex flex-col gap-10 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-10">
-      
-      {/* 3D Hero Section */}
-      <div className="flex flex-col gap-6">
-        <Hero3D />
-      </div>
+
 
       {/* Profile & Intro */}
       <div className="flex flex-col gap-6">
