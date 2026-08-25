@@ -39,26 +39,26 @@ export default function Projects() {
   return (
     <div className="flex flex-col gap-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
       <div className="flex flex-col gap-2">
-        <h1 className="text-2xl font-bold text-newBlack">Projects</h1>
-        <p className="text-gray-500">Things I've built to solve problems and learn new technologies.</p>
+        <h1 className="text-3xl font-bold text-white tracking-tight">Projects</h1>
+        <p className="text-gray-400">Things I've built to solve problems and learn new technologies.</p>
       </div>
 
       <div className="grid grid-cols-1 gap-6">
         {projects.map((proj, idx) => (
-          <div key={idx} className="flex flex-col gap-3 p-5 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex flex-col sm:flex-row justify-between sm:items-start gap-2">
-              <div>
-                <h3 className="text-lg font-bold text-newBlack">{proj.title}</h3>
-                <p className="text-xs font-semibold text-gray-400 mt-1">{proj.tech}</p>
+          <div key={idx} className="flex flex-col gap-4 p-6 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/[0.08] transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-500/10 group">
+            <div className="flex flex-col sm:flex-row justify-between sm:items-start gap-3">
+              <div className="flex flex-col gap-1">
+                <h3 className="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">{proj.title}</h3>
+                <p className="text-xs font-semibold text-indigo-300 mt-1">{proj.tech}</p>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-gray-500 bg-gray-50 px-2 py-1 rounded-md border border-gray-200 whitespace-nowrap">{proj.date}</span>
-                <a href={proj.link} target="_blank" rel="noreferrer" className="p-1.5 bg-gray-100 rounded-full text-gray-600 hover:text-newBlack hover:bg-gray-200 transition-colors">
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-medium text-gray-300 bg-white/10 px-3 py-1 rounded-full whitespace-nowrap">{proj.date}</span>
+                <a href={proj.link} target="_blank" rel="noreferrer" className="p-2 bg-white/10 rounded-full text-gray-300 hover:text-white hover:bg-indigo-500 transition-colors">
                   <Github className="w-4 h-4" />
                 </a>
               </div>
             </div>
-            <p className="text-sm text-gray-600 leading-relaxed mt-2">{proj.desc}</p>
+            <p className="text-sm text-gray-400 leading-relaxed">{proj.desc}</p>
           </div>
         ))}
       </div>

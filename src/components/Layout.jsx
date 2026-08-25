@@ -17,12 +17,10 @@ const Github = (props) => (
 
 const NavLink = ({ to, icon: Icon, label, external, isActive }) => {
   const content = (
-    <div className="relative flex items-center justify-center rounded-full cursor-pointer aspect-square">
-      <div className={`peer z-10 relative p-2 text-lg rounded-full transition-all ${isActive ? "text-newBlack md:bg-newGrey/20" : "text-gray-400"}`}>
-        <Icon className="w-5 h-5" strokeWidth={2} />
-      </div>
-      {isActive && <span className="absolute inset-0 bg-newGrey/20 rounded-full"></span>}
-      <div className="absolute top-0 px-2 py-1 text-xs font-medium transition-all rounded-md opacity-0 w-max bg-[#d8d8d8] text-newBlack md:right-0 peer-hover:opacity-100 peer-hover:-top-10 md:peer-hover:right-14 md:top-1/2 md:peer-hover:top-1/2 md:-translate-y-1/2">
+    <div className={`relative flex items-center justify-center p-2 rounded-xl transition-all duration-300 ${isActive ? "bg-white/10 text-white" : "text-gray-400 hover:text-white hover:bg-white/5"}`}>
+      <Icon className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />
+      {/* Tooltip */}
+      <div className="absolute -bottom-8 px-2 py-1 text-xs font-medium rounded-md opacity-0 bg-gray-800 text-white transition-opacity group-hover:opacity-100 pointer-events-none whitespace-nowrap">
         {label}
       </div>
     </div>
@@ -30,14 +28,14 @@ const NavLink = ({ to, icon: Icon, label, external, isActive }) => {
 
   if (external) {
     return (
-      <a target="_blank" rel="noopener noreferrer" href={to}>
+      <a target="_blank" rel="noopener noreferrer" href={to} className="group">
         {content}
       </a>
     );
   }
 
   return (
-    <Link target="_self" to={to}>
+    <Link to={to} className="group">
       {content}
     </Link>
   );
@@ -56,35 +54,28 @@ export default function Layout() {
   ];
 
   return (
-    <div className="relative flex justify-center min-h-screen p-1 md:p-4 capitalize text-newGrey bg-zinc-50 font-sans">
-      <div className="relative w-full max-w-xl pt-8 mb-20">
-        
-        {/* Desktop Sidebar */}
-        <div className="absolute top-0 bottom-0 hidden h-screen md:block -left-14">
-          <div className="sticky flex flex-col items-center gap-2 p-2 mx-auto bg-white border rounded-full shadow-lg top-10 border-newGrey/20">
-            {links.map((link) => (
-              <NavLink key={link.label} {...link} isActive={location.pathname === link.to} />
-            ))}
-          </div>
-        </div>
-
-        {/* Content Area */}
-        <div className="min-h-[calc(100vh-200px)] flex flex-col gap-4 md:gap-8 px-2 md:px-4">
-          <Outlet />
-        </div>
-
-        {/* Mobile Bottom Nav */}
-        <div className="fixed bottom-0 left-0 w-full z-50 flex flex-col justify-end h-full md:hidden pointer-events-none">
-          <div className="sticky bottom-4 w-full flex justify-center">
-            <div className="flex items-center gap-1 p-2 bg-white border rounded-full shadow-lg border-newGrey/20 pointer-events-auto">
-              {links.map((link) => (
-                <NavLink key={link.label} {...link} isActive={location.pathname === link.to} />
-              ))}
-            </div>
-          </div>
-        </div>
-
+    <div className="min-h-screen text-gray-100 font-sans pb-24 relative selection:bg-accent/30 selection:text-white">
+      
+      {/* Background ambient glow */}
+      <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-900/20 blur-[120px]"></div>
+        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-purple-900/20 blur-[120px]"></div>
       </div>
+
+      {/* Floating Top Navbar */}
+      <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-lg px-4">
+        <nav className="flex items-center justify-between p-2 mx-auto bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl">
+          {links.map((link) => (
+            <NavLink key={link.label} {...link} isActive={location.pathname === link.to} />
+          ))}
+        </nav>
+      </div>
+
+      {/* Content Area */}
+      <div className="pt-28 px-4 w-full max-w-2xl mx-auto flex flex-col gap-8">
+        <Outlet />
+      </div>
+
     </div>
   );
 }
