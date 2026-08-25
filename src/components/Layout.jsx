@@ -15,6 +15,12 @@ const Github = (props) => (
   </svg>
 );
 
+const LeetCode = (props) => (
+  <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" {...props} xmlns="http://www.w3.org/2000/svg">
+    <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.939 5.939 0 0 0 1.271 1.543l1.83 1.691a1.73 1.73 0 0 0 2.45-.098l6.82-7.3a1.446 1.446 0 0 0 .098-1.944 1.442 1.442 0 0 0-1.936-.098L8.681 14.16a1.597 1.597 0 0 1-2.261-.098l-1.83-1.692a3.528 3.528 0 0 1-.75-1.196 3.6 3.6 0 0 1-.205-.59 3.693 3.693 0 0 1-.036-1.579 3.541 3.541 0 0 1 .75-1.195l3.854-4.127L13.568 2.33a1.365 1.365 0 0 0 .098-1.944 1.373 1.373 0 0 0-.183-.387zM20.536 7.684a1.45 1.45 0 0 0-1.937.098l-1.884 2.016-1.63 1.745a1.442 1.442 0 0 0 .098 1.944 1.445 1.445 0 0 0 1.937-.098l1.63-1.744 1.884-2.017a1.44 1.44 0 0 0-.098-1.944zM16.9 14.881a1.442 1.442 0 0 0-1.936.098l-1.937 2.073-1.63 1.744a1.442 1.442 0 0 0 .098 1.944 1.445 1.445 0 0 0 1.936-.098l1.63-1.744 1.937-2.073a1.44 1.44 0 0 0-.098-1.944z"></path>
+  </svg>
+);
+
 const NavLink = ({ to, icon: Icon, label, external, isActive }) => {
   const content = (
     <div className={`relative flex items-center justify-center p-2 rounded-xl transition-all duration-300 ${isActive ? "bg-white/10 text-white" : "text-gray-400 hover:text-white hover:bg-white/5"}`}>
@@ -51,6 +57,7 @@ export default function Layout() {
     { to: "/stack", icon: Layers, label: "My Stack" },
     { to: "https://linkedin.com/in/shashank-pitalia-892059329", icon: Linkedin, label: "LinkedIn", external: true },
     { to: "https://github.com/Shashank-Pitalia", icon: Github, label: "Github", external: true },
+    { to: "https://leetcode.com/u/UBpqnWifVn", icon: LeetCode, label: "LeetCode", external: true },
   ];
 
   return (
